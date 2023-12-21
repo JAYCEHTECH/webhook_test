@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webhook Testing</title>
+</head>
+<body>
+    <div>
+        <h1>Click button to inititae payment</h1>
+        <button onclick="payWithPaystack()">Initiate Payment</button>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://js.paystack.co/v1/inline.js"></script> 
+
+<script>
+    function payWithPaystack(e) {
+
+        let handler = PaystackPop.setup({
+        key: 'pk_test_39d8b43d02deb0cc6eeb5389db47ee263928045a',
+        email: "codeage20@gmail.com",
+        amount: 2 * 100,
+        currency: "GHS",
+        ref: "epsilon223",
+        metadata: {
+            'bundle_package': 50,
+            'receiver': '0272266444',
+            'channel': 'ishare',
+            'user_id': '9VA0qyq6lXYPZ6Ut867TVcBvF2t1',
+        },
+        onClose: function(){
+            alert("Transaction Closed");
+
+        },
+        callback: function(response){
+            console.log(response)
+        }
+        });
+
+    handler.openIframe();
+}
+</script>
+</html>
